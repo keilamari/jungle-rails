@@ -46,6 +46,13 @@ RSpec.describe User, type: :model do
       @user.save
       expect(User.authenticate_with_credentials("frodo@theshire.com", "oh-sam!")).to_not be_nil
     end
-    
+    it "should be authenticated with wrong case" do
+      @user.save
+      expect(User.authenticate_with_credentials("FroDo@theshire.com", "oh-sam!")).to_not be_nil
+    end
+    it "should be authenticated with extra spaces" do
+      @user.save
+      expect(User.authenticate_with_credentials("   frodo@theshire.com", "oh-sam!")).to_not be_nil
+    end
   end
 end
